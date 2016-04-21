@@ -5,7 +5,7 @@
   <tbody>
     <tr>
       <td><b>Name of Device:</b></td>
-      <td><%=s.text_field :device_name %></td>
+      <td><%=s.text_field :device_name, :autocomplete => 'off' %></td>
     </tr>
 		<tr>
       <td><b>Type of Device:</b></td>
@@ -17,15 +17,15 @@
     </tr>
 		<tr>
       <td><b>Model of Device:</b></td>
-      <td><%=s.text_field :device_model %></td>
+      <td><%=s.text_field :device_model, :autocomplete => 'off' %></td>
     </tr>
 		<tr>
       <td><b>Minimum Original Cost of Device:</b></td>
-      <td><%=s.text_field :min_price, size: 10 %></td>
+      <td><%=s.text_field :min_price, size: 10, :autocomplete => 'off' %></td>
     </tr>
 		<tr>
       <td><b>Maximum Original Cost of Device:</b></td>
-      <td><%=s.text_field :max_price, size: 10 %></td>
+      <td><%=s.text_field :max_price, size: 10, :autocomplete => 'off' %></td>
     </tr>
 		<tr>
       <td colspan="2" style="text-align:center">The format for the dates is YYYY-MM-DD</td>
