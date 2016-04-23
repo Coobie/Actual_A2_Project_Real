@@ -1,5 +1,6 @@
 <h1> Advanced Search </h1>
 <br>
+<%= link_to "Back",devices_path %>
 <%= form_for @search do |s| %>
 <table class="table1" >
   <tbody>
@@ -18,6 +19,10 @@
 		<tr>
       <td><b>Model of Device:</b></td>
       <td><%=s.text_field :device_model, :autocomplete => 'off' %></td>
+    </tr>
+    <tr>
+      <td><b>Owner of the Device:</b></td>
+      <td><%= s.collection_select :user_id, User.all, :id, :user_id_name, :include_blank => "--Please Select Option--"  %></td>
     </tr>
 		<tr>
       <td><b>Minimum Original Cost of Device:</b></td>
@@ -44,6 +49,34 @@
       <td></td>
       <td style="text-align:right"><%=s.submit "Search" %></td>
     </tr>
+</table>
 <% end %>
 
-<%= link_to "Back",devices_path %>
+
+
+
+<%= form_for @search do |u| %>
+<table class="table1" >
+  <tbody>
+    <tr>
+      <td><b>First name of user:</b></td>
+      <td><%=u.text_field :user_first_name, :autocomplete => 'off' %></td>
+    </tr>
+    <tr>
+      <td><b>Last name of user:</b></td>
+      <td><%=u.text_field :user_last_name, :autocomplete => 'off' %></td>
+    </tr>
+    <tr>
+      <td><b>Office location of user:</b></td>
+      <td><%=u.text_field :office_location, :autocomplete => 'off' %></td>
+    </tr>
+    <tr>
+      <td><b>Role of user:</b></td>
+      <td><%=u.select(:role,[['user'],['admin']], :include_blank => "--Please Select Option--") %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td style="text-align:right"><%=u.submit "Search" %></td>
+    </tr>
+</table>
+<% end %>

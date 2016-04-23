@@ -1,5 +1,6 @@
 <h1>Search results</h1>
 <p><%= link_to "back", new_search_path %> </p>
+
 <% if @search.search_devices.empty? %>
 	<p>No results found </p>
 <% else %>
@@ -19,4 +20,24 @@
 </tr>
 <% end %>
 </table>
+<% end %>
+
+
+<% if @search.search_users.empty? %>
+	<p>No results found </p>
+<% else %>
+
+<table class="table1" >
+	<tr>
+		<th>Device Name  </th>
+		<th>Device Owner</th>
+		<th>Device Type  </th>
+		<th>Edit  </th>
+	</tr>
+		<% @search.search_users.each do |c|  %>
+
+	<td><%= link_to "#{c.first_name}",user_path(c.id) %></td>
+
+</tr>
+<% end %>
 <% end %>
