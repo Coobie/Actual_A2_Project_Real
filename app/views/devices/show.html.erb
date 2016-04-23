@@ -1,0 +1,117 @@
+<h1>Showing <%= @devices.device_name %> </h1>
+<% time= DateTime.now %>
+<%= time.strftime("Today is %A the %d of %B %Y") %>
+
+<% time= DateTime.now %>
+<% time2 = time.strftime("%Y-%m-%d")%>
+
+<% end_date = @devices.expiry_date %>
+<% first_date = @devices.start_date %>
+<% life_time = TimeDifference.between(first_date, end_date).in_days %>
+
+<% price = @devices.device_cost %>
+
+<br><% upgrade_cost = price-(price*((1/life_time)* (TimeDifference.between(time2,first_date).in_days))) %>
+
+
+<% if current_user.admin? %>
+  <table class="table2" >
+     <tbody>
+       <tr>
+         <td><b>The Owner of the Device is:</b></td>
+         <td><%= link_to "#{@devices.user.full_name}",user_path(@devices.user_id) %></td>
+       </tr>
+         <tr>
+           <td><b>The Owner has an id of:</b></td>
+           <td><%= @devices.user_id %></td>
+         </tr>
+       <tr>
+         <td><b>Name of Device:</b></td>
+         <td><%=@devices.device_name %></td>
+       </tr>
+       <tr>
+         <td><b>Type of Device:</b> </td>
+         <td><%=@devices.device_type %></td>
+       </tr>
+         <tr>
+           <td><b>Model of Device:</b> </td>
+           <td><%=@devices.device_model %></td>
+         </tr>
+         <tr>
+           <td><b>Manufacturer of Device:</b> </td>
+           <td><%=@devices.device_manufacturer %></td>
+         </tr>
+           <tr>
+             <td><b>Original price of Device:</b></td>
+             <td><%=number_to_currency(@devices.device_cost,:unit => "£")%></td>
+           </tr>
+             <tr>
+               <td><b>Start Date of Device:</b> </td>
+               <td><%=@devices.start_date.strftime("%d/%m/%y") %></td>
+             </tr>
+             <tr>
+               <td><b>Expiry Date of Device:</b></td>
+               <td><%=@devices.expiry_date.strftime( "%d/%m/%y") %></td>
+             </tr>
+             <tr>
+               <td><b>The Lifetime of the Device in days:</b></td>
+               <td><%= life_time %></td>
+             </tr>
+             <tr>
+               <td><b>The Cost to Upgrade Today:</b></td>
+               <td><%=  number_to_currency(upgrade_cost,:unit => "£") %></td>
+             </tr>
+             <tr>
+               <td></td>
+               <td style="text-align:right"><%= link_to "Edit this record", edit_device_path(@devices) %>
+            </tr>
+         </tbody>
+   </table>
+<% else %>
+
+<table class="table2" >
+   <tbody>
+     <tr>
+       <td><b>Name of Device:</b></td>
+       <td><%=@devices.device_name %></td>
+     </tr>
+     <tr>
+       <td><b>Type of Device:</b> </td>
+       <td><%=@devices.device_type %></td>
+     </tr>
+       <tr>
+         <td><b>Model of Device:</b> </td>
+         <td><%=@devices.device_model %></td>
+       </tr>
+       <tr>
+         <td><b>Manufacturer of Device:</b> </td>
+         <td><%=@devices.device_manufacturer %></td>
+       </tr>
+         <tr>
+           <td><b>Original price of Device:</b></td>
+           <td><%=number_to_currency(@devices.device_cost,:unit => "£")%></td>
+         </tr>
+           <tr>
+             <td><b>Start Date of Device:</b> </td>
+             <td><%=@devices.start_date.strftime("%d/%m/%y") %></td>
+           </tr>
+           <tr>
+             <td><b>Expiry Date of Device:</b></td>
+             <td><%=@devices.expiry_date.strftime( "%d/%m/%y") %></td>
+           </tr>
+           <tr>
+             <td><b>The Lifetime of the Device in days:</b></td>
+             <td><%= life_time %></td>
+           </tr>
+           <tr>
+             <td><b>The Cost to Upgrade Today:</b></td>
+             <td><%=  number_to_currency(upgrade_cost,:unit => "£") %></td>
+           </tr>
+           <tr>
+             <td></td>
+             <td style="text-align:right"> </td>
+          </tr>
+       </tbody>
+ </table>
+
+ <% end %>

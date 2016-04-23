@@ -1,0 +1,88 @@
+<h1> Advanced Search </h1>
+<br>
+
+<div id=left_col >
+  <h2>Devices</h2>
+  <%= link_to "Back",devices_path %>
+<%= form_for @search do |s| %>
+<table class="table1" width="75%" >
+  <tbody>
+    <tr>
+      <td><b>Name of Device:</b></td>
+      <td><%=s.text_field :device_name, :autocomplete => 'off' %></td>
+    </tr>
+		<tr>
+      <td><b>Type of Device:</b></td>
+      <td><%=s.select :device_type, options_for_select(@device_type), :include_blank => "--Please Select Option--" %></td>
+    </tr>
+		<tr>
+      <td><b>Manufacturer of Device:</b></td>
+      <td><%=s.select :device_manufacturer, options_for_select(@device_manufacturer), :include_blank => "--Please Select Option--" %></td>
+    </tr>
+		<tr>
+      <td><b>Model of Device:</b></td>
+      <td><%=s.text_field :device_model, :autocomplete => 'off' %></td>
+    </tr>
+    <tr>
+      <td><b>Owner of the Device:</b></td>
+      <td><%= s.collection_select :user_id, User.all, :id, :user_id_name, :include_blank => "--Please Select Option--"  %></td>
+    </tr>
+		<tr>
+      <td><b>Minimum Original Cost of Device:</b></td>
+      <td><%=s.text_field :min_price, size: 10, :autocomplete => 'off' %></td>
+    </tr>
+		<tr>
+      <td><b>Maximum Original Cost of Device:</b></td>
+      <td><%=s.text_field :max_price, size: 10, :autocomplete => 'off' %></td>
+    </tr>
+		<tr>
+      <td colspan="2" style="text-align:center">The format for the dates is YYYY-MM-DD</td>
+    </tr>
+		<tr>
+      <td><b>Find Device(s) that started between:</b></td>
+      <td><%=s.text_field :start_date,"data-provide"=>'datepicker' %><b><center> and </b></center><%= s.text_field :start_date_min,"data-provide"=>'datepicker' %>
+			</td>
+    </tr>
+		<tr>
+      <td><b>Find Device(s) that expire between:</b></td>
+      <td><%=s.text_field :expiry_date,"data-provide"=>'datepicker' %><b><center> and </b></center><%= s.text_field :expiry_date_min,"data-provide"=>'datepicker' %>
+			</td>
+    </tr>
+		<tr>
+      <td></td>
+      <td style="text-align:right"><%=s.submit "Search" %></td>
+    </tr>
+</table>
+<% end %>
+</div>
+
+
+<div id=right_col >
+  <h2>Users</h2>
+  <%= link_to "Back",users_path %>
+<%= form_for @search do |u| %>
+<table class="table1" width="75%" >
+  <tbody>
+    <tr>
+      <td><b>First name of user:</b></td>
+      <td><%=u.text_field :user_first_name, :autocomplete => 'off' %></td>
+    </tr>
+    <tr>
+      <td><b>Last name of user:</b></td>
+      <td><%=u.text_field :user_last_name, :autocomplete => 'off' %></td>
+    </tr>
+    <tr>
+      <td><b>Office location of user:</b></td>
+      <td><%=u.text_field :office_location, :autocomplete => 'off' %></td>
+    </tr>
+    <tr>
+      <td><b>Role of user:</b></td>
+      <td><%=u.select(:role,[['user'],['admin']], :include_blank => "--Please Select Option--") %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td style="text-align:right"><%=u.submit "Search" %></td>
+    </tr>
+</table>
+<% end %>
+</div>

@@ -1,0 +1,48 @@
+<h1>Search results</h1>
+<p><%= link_to "back", new_search_path %> </p>
+<div id=left_col >
+	<h2>Devices</h2>
+<% if @search.search_devices.empty? %>
+	<p>No results found for devices </p>
+<% else %>
+
+<table class="table1" width="75%" >
+	<tr>
+		<th>Device Name  </th>
+		<th>Device Owner</th>
+		<th>Device Type  </th>
+		<th>Edit  </th>
+	</tr>
+		<% @search.search_devices.each do |c|  %>
+	<td><%= link_to "#{c.device_name}",device_path(c) %> </td>
+	<td><%= link_to "#{c.user.first_name}",user_path(c.user_id) %></td>
+	<td><%= link_to "#{c.device_type}",device_path(c) %> </td>
+	<td><%= link_to "Edit ", edit_device_path(c) %></td>
+</tr>
+<% end %>
+</table>
+<% end %>
+</div>
+<div id=right_col>
+	<h2>Users</h2>
+<% if @search.search_users.empty? %>
+	<p>No results found for users </p>
+<% else %>
+
+<table class="table1" width="75%" >
+	<tr>
+		<th>First Name </th>
+		<th>Last Name </th>
+		<th>Email  </th>
+		<th>Edit  </th>
+
+	</tr>
+<% @search.search_users.each do |c|  %>
+	<td><%= link_to "#{c.first_name}",user_path(c) %> </td>
+	<td><%= link_to "#{c.last_name}",user_path(c) %></td>
+	<td><%= link_to "#{c.email}",user_path(c) %></td>
+	<td><%= link_to "Edit ", edit_user_path(c) %></td>
+</tr>
+<% end %>
+<% end %>
+</div>

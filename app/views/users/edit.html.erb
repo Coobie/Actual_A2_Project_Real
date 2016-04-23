@@ -1,0 +1,34 @@
+<h1>Editing the account for <%=@user.first_name %> </h1>
+<H2>The User ID is <%=@user.id %> </h2>
+
+<%= form_for @user do |u| %>
+<table class="table_edit" >
+  <tbody>
+    <tr>
+      <td><b>First name:</b></td>
+      <td><%=u.text_field :first_name, :autocomplete => 'off' %></td>
+    </tr>
+    <tr>
+      <td><b>Last name:</b></td>
+      <td><%=u.text_field :last_name, :autocomplete => 'off' %></td>
+    </tr>
+    <tr>
+      <td><b>Email address:</b></td>
+      <td><%=u.text_field :email, :autocomplete => 'off' %></td>
+    </tr>
+    <tr>
+      <td><b>Office location:</b></td>
+      <td><%=u.text_field :office_location %></td>
+    </tr>
+    <tr>
+      <td><b>Role of user:</b></td>
+      <td><%=u.select(:role,[['user'],['admin']]) %></td>
+    </tr>
+    <tr>
+      <td><%= link_to "Delete User", destroy_user_path(@user), method: :delete, data: { confirm: "Are you sure? This cannot be undone?" } %></td>
+      <td style="text-align:right"><%=u.submit "Change" %></td>
+    </tr>
+      </tbody>
+</table>
+
+<% end %>

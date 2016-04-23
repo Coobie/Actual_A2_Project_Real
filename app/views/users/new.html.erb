@@ -1,0 +1,43 @@
+<div class="authform">
+ <%= form_for User.new, url: create_user_path do |f| %>
+    <h2>Create New User</h2>
+
+    <table class="table_edit" >
+      <tbody>
+        <tr>
+          <td><b>First name:</b></td>
+          <td><%= f.text_field :first_name, :autocomplete => 'off', autofocus: true  %></td>
+        </tr>
+        <tr>
+          <td><b>Last name:</b></td>
+          <td><%= f.text_field :last_name, :autocomplete => 'off'  %></td>
+        </tr>
+        <tr>
+          <td><b>Office Location:</b></td>
+          <td><%= f.text_field :office_location, :autocomplete => 'off'  %></td>
+        </tr>
+        <tr>
+          <td><b>Role of user:</b></td>
+          <td><%=f.select(:role,[['user'],['admin']]) %></td>
+        </tr>
+        <tr>
+          <td><b>Email address:</b></td>
+          <td><%= f.text_field :email, :autocomplete => 'off'  %></td>
+        </tr>
+        <tr>
+          <td><b>Password:</b></td>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+          <td><%= f.password_field :password, :autocomplete => 'off'  %></td>
+        </tr>
+        <tr>
+          <td><b>Passsword confirmation:</b></td>
+          <td><%= f.password_field :password_confirmation, :autocomplete => 'off'  %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="text-align:right"><%=f.submit "Create User" %></td>
+        </tr>
+</table>
+<% end %>

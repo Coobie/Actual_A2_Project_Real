@@ -1,0 +1,19 @@
+<h1>Showing All Users</h1>
+<h3><%=link_to 'New User',('../users/new')%></h3>
+<h4><%= link_to "Advanced Search", new_search_path %></h4>
+<table class="table1" width="30%" >
+	<tr>
+		<th>First Name </th>
+		<th>Last Name </th>
+		<th>Email  </th>
+		<th>Action  </th>
+
+	</tr>
+<% @users.each do |n| %>
+	<td><%= link_to "#{n.first_name}",user_path(n) %> </td>
+	<td><%= link_to "#{n.last_name}",user_path(n) %></td>
+	<td><%= link_to "#{n.email}",user_path(n) %></td>
+	<td><%= link_to "Edit ", edit_user_path(n) %></td>
+</tr>
+<% end %>
+</table>

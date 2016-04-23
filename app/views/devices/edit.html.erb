@@ -1,0 +1,48 @@
+<h1>Editing <%=@devices.device_name %> </h1>
+<%= link_to "Back to Devices",devices_path %>
+
+
+<%= form_for @devices do |f| %>
+<table class="table_edit" >
+  <tbody>
+    <tr>
+      <td><b>Name of Device:</b></td>
+      <td><%=f.text_field :device_name, :autocomplete => 'off' %></td>
+    </tr>
+    <tr>
+      <td><b>Manufactuer of Device:</b></td>
+      <td><%=f.text_field :device_manufacturer, :autocomplete => 'off'%></td>
+    </tr>
+    <tr>
+      <td><b>Model of Device:</b></td>
+      <td><%=f.text_field :device_model, :autocomplete => 'off' %></td>
+    </tr>
+    <tr>
+      <td><b>Type of Device:</b></td>
+      <td><%=f.select(:device_type,[['Phone'],['Tablet'],['Laptop'],['Other']]) %></td>
+    </tr>
+    <tr>
+      <td><b>Price of the original device:</b></td>
+      <td><%=f.number_field :device_cost, :autocomplete => 'off', :step => 0.01 %></td>
+    </tr>
+    <td><b>Registered user:</b></td>
+          <td><%= f.collection_select :user_id, User.all, :id, :user_id_name  %></td>
+    <tr>
+      <td><b>Start date of Device:</b></td>
+      <td><%=f.text_field :start_date,"data-provide"=>'datepicker'%></td>
+    </tr>
+    <tr>
+      <td><b>Expiry date of Device:</b></td>
+      <td><%=f.text_field :expiry_date,"data-provide"=>'datepicker'%></td>
+    </tr>
+    <tr>
+      <td><%= link_to('Delete this record',@devices, data: { confirm: "Are you sure? This cannot be undone?" }, method: :delete ) %></td>
+      <td style="text-align:right"><%=f.submit "Change" %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+<% end %>

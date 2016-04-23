@@ -1,0 +1,39 @@
+<% if current_user.admin? %>
+<h1>Showing All Devices</h1>
+<h3><%=link_to 'New Device',('../devices/new')%></h3>
+<h4><%= link_to "Advanced Search", new_search_path %></h4>
+<%= "📱"%> <%="💻"%> <%="⌨"%> <%="🖥" %>
+
+<table class="table1" width="30%" >
+	<tr>
+		<th>Device Name  </th>
+		<th>Device Owner  </th>
+		<th>Device Type  </th>
+		<th>Action </th>
+
+	</tr>
+<% @devices.each do |n| %>
+	<td><%= link_to "#{n.device_name}",device_path(n) %> </td>
+<td><%= link_to "#{n.user.full_name}",user_path(n.user_id) %></td>
+	<td><%= link_to "#{n.device_type}",device_path(n) %> </td>
+	<td><%= link_to "Edit ", edit_device_path(n) %></td>
+</tr>
+<% end %>
+</table>
+<% end %>
+
+<% if current_user.user? %>
+<h1>Your Personal Devices</h1>
+<table class="table1" width="30%">
+	<tr>
+		<th>Device Name  </th>
+		<th>Device Type  </th>
+		<th>Expiry Date of Device </th>
+	</tr>
+<% @devices.each do |n| %>
+	<td><%= link_to "#{n.device_name}",device_path(n) %> </td>
+	<td><%= link_to "#{n.device_type}",device_path(n) %> </td>
+	<td><%= link_to "#{n.expiry_date.strftime("%d/%m/%y")}",device_path(n) %> </td>
+</tr>
+<% end %>
+<% end %>
