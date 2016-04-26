@@ -109,7 +109,11 @@
            </tr>
            <tr>
              <td></td>
-             <td style="text-align:right"> </td>
+             <td style="text-align:right"><%=  form_for(@devices) do |f|%>
+                 <%= f.check_box :upgrade_request %>
+                 <%= f.submit "+" %>
+                 <% end %>
+               </td> 
           </tr>
        </tbody>
  </table>

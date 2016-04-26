@@ -32,8 +32,8 @@ before_action :authenticate_user!
   	redirect_to :action =>'index'
   end
   def device_params
-    authorize Device
-  	params.require(:device).permit(:device_name,:device_manufacturer,:device_type,:device_model,:user_id,:start_date,:expiry_date,:device_cost)
+
+  	params.require(:device).permit(:device_name,:device_manufacturer,:device_type,:device_model,:user_id,:start_date,:expiry_date,:device_cost, :upgrade_request)
   end
   def create
     authorize Device
@@ -49,7 +49,6 @@ end
 
 private
   def Device_params
-    authorize Device
-    params.require(:device).permit(:device_name,:device_type,:device_manufacturer,:device_model,:user_id,:start_date,:expiry_date, :device_cost)
+    params.require(:device).permit(:device_name,:device_type,:device_manufacturer,:device_model,:user_id,:start_date,:expiry_date, :device_cost, :upgrade_request)
 end
 end

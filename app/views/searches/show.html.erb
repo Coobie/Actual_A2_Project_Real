@@ -11,7 +11,7 @@
 		<th>Device Name  </th>
 		<th>Device Owner</th>
 		<th>Device Type  </th>
-		<th>Edit  </th>
+		<th>Action  </th>
 	</tr>
 		<% @search.search_devices.each do |c|  %>
 	<td><%= link_to "#{c.device_name}",device_path(c) %> </td>
@@ -34,7 +34,7 @@
 		<th>First Name </th>
 		<th>Last Name </th>
 		<th>Email  </th>
-		<th>Edit  </th>
+		<th>Action  </th>
 
 	</tr>
 <% @search.search_users.each do |c|  %>
