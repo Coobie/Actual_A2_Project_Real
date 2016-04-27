@@ -19,7 +19,7 @@ before_action :authenticate_user!
   	@devices = Device.find(params[:id])
   end
   def update
-    authorize Device
+
   	@devices = Device.find(params[:id])
   	if @devices.update(device_params)
   		redirect_to :action => 'index'
@@ -31,10 +31,7 @@ before_action :authenticate_user!
   	Device.find(params[:id]).destroy
   	redirect_to :action =>'index'
   end
-  def device_params
 
-  	params.require(:device).permit(:device_name,:device_manufacturer,:device_type,:device_model,:user_id,:start_date,:expiry_date,:device_cost, :upgrade_request)
-  end
   def create
     authorize Device
   @devices = Device.new(device_params)
@@ -48,7 +45,8 @@ end
 end
 
 private
-  def Device_params
-    params.require(:device).permit(:device_name,:device_type,:device_manufacturer,:device_model,:user_id,:start_date,:expiry_date, :device_cost, :upgrade_request)
+def device_params
+
+  params.require(:device).permit(:device_name,:device_manufacturer,:device_type,:device_model,:user_id,:start_date,:expiry_date,:device_cost, :upgrade_request)
 end
 end

@@ -103,7 +103,7 @@
              <td><b>The Lifetime of the Device in days:</b></td>
              <td><%= life_time %></td>
            </tr>
-           <tr>
+           <tr><% if @devices.upgrade_request == false %>
              <td><b>The Cost to Upgrade Today:</b></td>
              <td><%=  number_to_currency(upgrade_cost,:unit => "£") %></td>
            </tr>
@@ -113,7 +113,10 @@
                  <%= f.check_box :upgrade_request %>
                  <%= f.submit "+" %>
                  <% end %>
-               </td> 
+                <% else %>
+                <td><%= "You have requested an upgrade for this device" %></td>
+                <% end %>
+               </td>
           </tr>
        </tbody>
  </table>

@@ -22,3 +22,11 @@ first_name: 'Jacob',
 last_name: 'G-C',
 office_location: 'Bristol',
 role: 'admin' ) unless User.where(email: 'jgc@mail.com').exists?
+
+Device.create!(
+device_name: 'test121',
+device_type: 'Phone',
+device_cost: '123.10',
+device_model: '6S',
+device_manufacturer: 'Apple',
+user_id: '1')
