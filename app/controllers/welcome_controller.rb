@@ -2,10 +2,11 @@ class WelcomeController < ApplicationController
   before_action :authenticate_user!
   def index
     if current_user.admin?
-      @devices = Device.where(:upgrade_request=>true) and Device.where(:payment_received=>false)
+      @devices = Device.where(:upgrade_request=>true, :payment_received=>false)
+      @devices_all = Device.where(:payment_received=>false, :upgrade_request=>false)
     else
       @devices = Device.where(:upgrade_request=>true,user_id: current_user.id)
-    
+
     end
   end
 end

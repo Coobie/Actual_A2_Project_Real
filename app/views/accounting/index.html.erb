@@ -13,7 +13,7 @@
       	<td class ="device"><%= n.device_name %> </td>
         <td class ="name"><%= n.user.full_name %></td>
       	<td class="type"><%= n.device_type %> </td>
-      	<td class="cost"><%= number_to_currency(n.device_upgrade_cost,:unit=> "£") %></td>
+      	<td class="cost"><%= number_to_currency(n.upgrade_cost,:unit=> "£") %></td>
         <td>
 
           <button>&#9668;</button>

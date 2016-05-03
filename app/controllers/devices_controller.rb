@@ -4,7 +4,7 @@ before_action :authenticate_user!
     if current_user.admin?
       @devices = Device.all
     else
-      @devices = Device.where(user_id: current_user.id)
+      @devices = Device.where(user_id: current_user.id) 
     end
   end
   def show
@@ -19,7 +19,6 @@ before_action :authenticate_user!
   	@devices = Device.find(params[:id])
   end
   def update
-
   	@devices = Device.find(params[:id])
   	if @devices.update(device_params)
   		redirect_to :action => 'index'
@@ -46,6 +45,6 @@ end
 
 private
 def device_params
-  params.require(:device).permit(:device_name,:device_manufacturer,:payment_received,:device_type,:device_model,:user_id,:start_date,:expiry_date,:device_cost, :upgrade_request)
+  params.require(:device).permit(:device_name,:upgrade_cost,:device_manufacturer,:payment_received,:device_type,:device_model,:user_id,:start_date,:expiry_date,:device_cost, :upgrade_request)
 end
 end

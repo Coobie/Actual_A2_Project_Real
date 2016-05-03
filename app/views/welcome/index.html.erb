@@ -1,6 +1,7 @@
 <% if user_signed_in? %>
 <h1>Welcome <span style="color:red;"><%= current_user.full_name %></span>
-
+<% time= DateTime.now %>
+<% date_two_months = time + 60 %>
   </h1>
   <h4>Please find the instructions on how to use this system below</h4>
 
@@ -14,33 +15,61 @@
   </p>
 
 <h3>The following users have requested an upgrade:</h3>
-
+<% user_requests = @devices %>
+<% if user_requests.empty? %>
+  <p>No Users want to upgrade their devices early</p>
+  <% else %>
   <table class="table1" style="width:40%">
   	<tr>
   		<th>Device Name  </th>
   		<th>Device Owner  </th>
   		<th>Device Type  </th>
       <th>Original Expiry Date </th>
+      <th>Cost to Owner</th>
       <th>option</th>
 
   	</tr>
-  <%   @devices.each do |n| %>
+  <%  user_requests.each do |n| %>
   	<td><%= link_to "#{n.device_name}",device_path(n) %> </td>
     <td><%= link_to "#{n.user.full_name}",user_path(n.user_id) %></td>
   	<td><%= link_to "#{n.device_type}",device_path(n) %> </td>
     <td><%= link_to "#{n.expiry_date.strftime("%d/%m/%y")}",device_path(n) %> </td>
+    <td><%= link_to number_to_currency(n.upgrade_cost,:unit => "£"),device_path(n) %></td>
     <td><%= check_box_tag "payment_received[]", n.id %></td>
   </tr>
   <% end %>
   <%= submit_tag "Update",  :controller => "devices", :action => "update"  %>
+  </table>
+  <% end %>
+<h3>The following devices expire within two months:</h3>
+
+<% expire_soon = @devices_all.where(["expiry_date <= ?",date_two_months]).where(["expiry_date >= ?",time]) %>
+<% if expire_soon.empty? %>
+<p>No devices expire within two months</p>
+<% else %>
+<table class="table1" style="width:40%">
+<th>Device Name  </th>
+<th>Device Owner  </th>
+<th>Device Type  </th>
+ <% expire_soon.each do |q| %>
+  <tr><td><%= link_to "#{q.device_name}",device_path(q) %> </td>
+    <td><%= link_to "#{q.user.full_name}",user_path(q.user_id) %></td>
+    <td><%= link_to "#{q.device_type}",device_path(q) %> </td>
+  <% end %>
+  <% end %>
+
     <% else %>
-    <% @devices.each do |u| %>
+
 <table class="table1" style="width:20%">
-    <tr><th>You have requested to upgrade the following devices</th></tr>
-    <tr>
-    <td><%= link_to "#{u.device_name}",device_path(u) %> </td>
+
+    <tr><th>You have requested to upgrade the following devices</th><th>At the cost of</th></tr>
+
+      <% @devices.where(["expiry_date <= ?",time]).each do |u| %>
+      <tr><td><%= link_to "#{u.device_name}",device_path(u) %> </td>
+      <td><%= link_to number_to_currency(u.upgrade_cost,:unit => "£"),device_path(u) %> </td>
     </tr>
     <% end %>
-  <% end %>
+<% end %>
+
 </table>
 <% end %>

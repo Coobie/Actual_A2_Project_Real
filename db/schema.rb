@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503121344) do
+ActiveRecord::Schema.define(version: 20160503145929) do
 
   create_table "devices", force: :cascade do |t|
     t.string   "device_name"
     t.string   "device_type"
     t.string   "device_model"
-    t.datetime "start_date"
+    t.date     "start_date"
     t.date     "expiry_date"
     t.decimal  "device_cost",         precision: 10, scale: 2
     t.string   "device_manufacturer"
