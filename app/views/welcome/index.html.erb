@@ -64,7 +64,7 @@
 
     <tr><th>You have requested to upgrade the following devices</th><th>At the cost of</th></tr>
 
-      <% @devices.where(["expiry_date <= ?",time]).each do |u| %>
+      <% @devices.where(["expiry_date >= ?",time]).each do |u| %>
       <tr><td><%= link_to "#{u.device_name}",device_path(u) %> </td>
       <td><%= link_to number_to_currency(u.upgrade_cost,:unit => "£"),device_path(u) %> </td>
     </tr>
