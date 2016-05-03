@@ -3,6 +3,7 @@
 <% if current_user.admin? %>
 <ul class="nav navbar-nav"> <li class="active"><%= link_to 'Home', welcome_index_path %></li>
 </ul>
+<li><%= link_to 'Accounting', accounting_index_path%></li>
 <li><%= link_to 'Users', users_path%></li>
   <li><%= link_to 'Devices',devices_path %></li>
   <li><%=link_to 'Calendar',calendar_page_index_path%></li>
@@ -11,7 +12,7 @@
   </ul>
     <li><%= link_to 'My Devices',devices_path %></li>
     <li><%=link_to 'My Replacement Calendar',calendar_page_index_path%></li>
-  <% else %>
+
 <% end %>
 <% end %>
 <% if user_signed_in? %>

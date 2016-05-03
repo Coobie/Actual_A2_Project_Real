@@ -1,0 +1,26 @@
+<h1>Accounting#index</h1>
+<div class='container'>
+      <table class="table1" >
+      	<tr>
+      		<th class='col-md-1' >Device Name  </th>
+      		<th class='col-md-3'>Device Owner  </th>
+      		<th class='col-md-1'>Device Type  </th>
+      		<th class='col-md-1'>Cost </th>
+          <th class='col-md-1'>Paid for </th>
+
+      	</tr>
+      <% @devices.each do |n| %>
+      	<td class ="device"><%= n.device_name %> </td>
+        <td class ="name"><%= n.user.full_name %></td>
+      	<td class="type"><%= n.device_type %> </td>
+      	<td class="cost"><%= number_to_currency(n.device_upgrade_cost,:unit=> "£") %></td>
+        <td>
+
+          <button>&#9668;</button>
+        </td>
+      </tr>
+      <% end %>
+      </table>
+    </div>
+    <%= javascript_tag "myFunction()" %>
+</div>

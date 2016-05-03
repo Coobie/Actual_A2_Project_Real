@@ -16,3 +16,11 @@
 //= require bootstrap-datepicker
 //= require bootstrap-sprockets
 //= require_tree .
+
+function myFunction(){
+  var sum = 0;
+  $('.price').each(function)(){
+    sum += parseFloat($(this).text());
+  });
+  alert(sum);
+}
