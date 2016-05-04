@@ -18,6 +18,10 @@ class UsersController < ApplicationController
     	@user = User.find(params[:id])
     	if @user.update(user_params)
     		redirect_to :action => 'index'
+        flash[:notice]="Successfully Edited User"
+       else
+           flash[:title]=@user.errors.full_messages.to_sentence
+           redirect_to :action => 'edit'
     	end
     end
     def destroy
@@ -28,17 +32,12 @@ class UsersController < ApplicationController
          redirect_to :action => 'index', notice: "User deleted."
      end
    end
-    def user_params
-    	params.require(:user).permit(:email,:first_name,:last_name,:role,:office_location)
-    end
-
     def create
       authorize User
     @users = User.new(sign_up_params)
    if @users.save
       flash[:notice]="Successfully Created New User"
     redirect_to :action =>'index'
-
   else
       flash[:title]=@users.errors.full_messages.to_sentence
       render(:action=>'new')

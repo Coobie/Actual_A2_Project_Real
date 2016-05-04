@@ -18,7 +18,7 @@
     </tr>
     <tr>
       <td><b>Office location:</b></td>
-      <td><%=u.text_field :office_location %></td>
+      <td><%=u.select(:office_location,[['Bay View Park'],['Estuary House'],['Gulley Point'],['Hill View Crest'],['Meadow Terrace'],['Ridge Tower'],['Station Site'],['Thames Key'],['Willow Plaza']], :include_blank => "--Please Select Option--") %></td>
     </tr>
     <tr>
       <td><b>Role of user:</b></td>

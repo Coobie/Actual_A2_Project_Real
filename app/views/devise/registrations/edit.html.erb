@@ -15,7 +15,7 @@
       </tr>
       <tr>
         <td><b>Office location:</b></td>
-        <td><%=f.text_field :office_location, :autocomplete => 'off' %></td>
+        <td><%=f.select(:office_location,[['Bay View Park'],['Estuary House'],['Gulley Point'],['Hill View Crest'],['Meadow Terrace'],['Ridge Tower'],['Station Site'],['Thames Key'],['Willow Plaza']], :include_blank => "--Please Select Option--") %></td>
       </tr>
       <tr>
         <td><b>Your current password:</b><br><i>(we need your current password <br>to confirm your changes)</i></td>

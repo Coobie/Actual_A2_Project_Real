@@ -1,7 +1,7 @@
 <h1>Search results</h1>
 <p><%= link_to "back", new_search_path %> </p>
 <div id=left_col >
-	<h2>Devices</h2>
+	<h2>Device Search Result</h2>
 <% if @search.search_devices.empty? %>
 	<p>No results found for devices </p>
 <% else %>
@@ -24,7 +24,7 @@
 <% end %>
 </div>
 <div id=right_col>
-	<h2>Users</h2>
+	<h2>User Search Results</h2>
 <% if @search.search_users.empty? %>
 	<p>No results found for users </p>
 <% else %>

@@ -26,11 +26,20 @@
           <td><%= f.collection_select :user_id, User.all, :id, :user_id_name, :include_blank => "--Please Select Option--"  %></td>
     <tr>
       <td><b>Start date of Device:</b></td>
-      <td><%=f.text_field :start_date,"data-provide"=>'datepicker'%></td>
+      <td><%=f.text_field :start_date,"data-provide"=>'datepicker', :autocomplete => 'off'%></td>
     </tr>
-    <tr>
+      <script>
+      $(document).ready(function() {
+  $("#id_for_scm_select_tag").change(function() {
+    $("#id_for_scm_select_tag option:selected").map(function() {
+      $("#id_for_text_field_tag").val($(this).text());
+    });
+  });
+});
+      </script>
+      <tr>
       <td><b>Expiry date of Device:</b></td>
-      <td><%=f.text_field :expiry_date,"data-provide"=>'datepicker'%></td>
+      <td><%=f.text_field :expiry_date,"data-provide"=>'datepicker', :autocomplete => 'off'%></td>
     </tr>
     <tr>
       <td></td>

@@ -23,9 +23,11 @@ before_action :authenticate_user!
   def update
   	@devices = Device.find(params[:id])
     if current_user.admin?
-      if @devices.update(device_params)
-        flash[:notice]="Successfully Changed"
-      end
+      if @devices.save
+         flash[:notice]="Successfully Edited Device"
+     else
+         flash[:title]=@devices.errors.full_messages.to_sentence
+    end
     elsif current_user.user?
       if @devices.update(device_params_user)
       end
@@ -43,6 +45,7 @@ end
     authorize Device
   	Device.find(params[:id]).destroy
   	redirect_to :action =>'index'
+    flash[:notice]="Device was Deleted"
   end
 
   def create

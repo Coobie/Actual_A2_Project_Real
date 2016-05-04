@@ -6,13 +6,6 @@
   <h4>Please find the instructions on how to use this system below</h4>
 
 <% if current_user.admin? %>
-  <%= "hello You can see this if you are an admin"%>
-  <p style="color:purple"><b>Things to do:
-    <li style="color:purple">Notification system</li>
-    <li style="color:purple">Search users</li>
-    <li style="color:purple">Overall look</li>
-    <li style="color:purple">Other styled tables</li></b>
-  </p>
 
 <h3>The following users have requested an upgrade:</h3>
 <% user_requests = @devices %>
@@ -29,13 +22,14 @@
       <th>option</th>
 
   	</tr>
-  <%  user_requests.each do |n| %>
+  <% user_requests.each do |n| %>
   	<td><%= link_to "#{n.device_name}",device_path(n) %> </td>
     <td><%= link_to "#{n.user.full_name}",user_path(n.user_id) %></td>
   	<td><%= link_to "#{n.device_type}",device_path(n) %> </td>
     <td><%= link_to "#{n.expiry_date.strftime("%d/%m/%y")}",device_path(n) %> </td>
     <td><%= link_to number_to_currency(n.upgrade_cost,:unit => "£"),device_path(n) %></td>
-    <td><%= check_box_tag "payment_received[]", n.id %></td>
+
+   
   </tr>
   <% end %>
   <%= submit_tag "Update",  :controller => "devices", :action => "update"  %>
