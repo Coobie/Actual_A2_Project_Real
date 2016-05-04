@@ -9,9 +9,13 @@ class Device < ActiveRecord::Base
     validates :user_id, presence: {message:" is missing"}
 
 
-    scope :unpaid, -> {where(paid_for: false)}
+    scope :unpaid, -> {where(payment_received: false,upgrade_request: true)}
     scope :wanted, -> {where('upgrade_cost > ?',0)}
   belongs_to :user
 
-  
+def cost_message
+  "#{device_name} at a cost of £#{(upgrade_cost).round(2)}"
+end
+
+
 end

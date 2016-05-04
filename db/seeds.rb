@@ -1,10 +1,5 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+
+#Users
 User.create!(
 email:'bob@mail.com',
 password:'qwertyuio',
@@ -23,10 +18,7 @@ last_name: 'G-C',
 office_location: 'Bristol',
 role: 'admin' ) unless User.where(email: 'jgc@mail.com').exists?
 
-Device.create!(
-device_name: 'test121',
-device_type: 'Phone',
-device_cost: '123.10',
-device_model: '6S',
-device_manufacturer: 'Apple',
-user_id: '1')
+#Devices
+Device.create(device_name: 'Galaxy',device_type: 'Phone',device_cost: '430.10',device_model: 'S6',device_manufacturer: 'Samsung',expiry_date: '2016-06-01',start_date: '2015-07-01',user_id: '2')
+Device.create(device_name: 'Galaxy',device_type: 'Phone',device_cost: '430.10',device_model: 'S6',device_manufacturer: 'Samsung',expiry_date: '2016-06-01',start_date: '2015-07-01',user_id: '3')
+Device.create(device_name: 'Note4',device_type: 'Phone',device_cost: '399.00',device_model: 'Note 4',device_manufacturer: 'Samsung',expiry_date: '2016-06-23',start_date: '2015-06-23',user_id: '1')

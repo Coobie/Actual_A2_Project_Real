@@ -22,5 +22,5 @@
       <% end %>
       </table>
     </div>
-    <%= javascript_tag "myFunction()" %>
+  <%= number_to_currency(a = Device.unpaid.wanted.sum(:upgrade_cost),:unit=> "£") %>
 </div>

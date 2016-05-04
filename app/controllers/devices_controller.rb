@@ -4,7 +4,7 @@ before_action :authenticate_user!
     if current_user.admin?
       @devices = Device.all
     else
-      @devices = Device.where(user_id: current_user.id) 
+      @devices = Device.where(user_id: current_user.id)
     end
   end
   def show
@@ -14,17 +14,31 @@ before_action :authenticate_user!
       @devices = Device.where(user_id: current_user.id).find(params[:id])
     end
   end
+
   def edit
     authorize Device
   	@devices = Device.find(params[:id])
   end
+
   def update
   	@devices = Device.find(params[:id])
-  	if @devices.update(device_params)
-  		redirect_to :action => 'index'
-      flash[:notice]="Successfully Changed"
-  	end
+    if current_user.admin?
+      if @devices.update(device_params)
+        flash[:notice]="Successfully Changed"
+      end
+    elsif current_user.user?
+      if @devices.update(device_params_user)
+      end
+      if @devices.upgrade_request == true
+      flash[:notice]="You have successfully ordered an upgrade for  #{@devices.cost_message}, a member of IT services will contact you via your email: #{@devices.user.email}"
+    else
+      flash[:alert]="Status Not Changed"
+      end
+
   end
+  redirect_to :action => 'index'
+end
+
   def destroy
     authorize Device
   	Device.find(params[:id]).destroy
@@ -45,6 +59,9 @@ end
 
 private
 def device_params
-  params.require(:device).permit(:device_name,:upgrade_cost,:device_manufacturer,:payment_received,:device_type,:device_model,:user_id,:start_date,:expiry_date,:device_cost, :upgrade_request)
+  params.require(:device).permit(:device_name,:upgrade_cost,:device_manufacturer,:payment_received,:device_type,:device_model,:user_id,:start_date,:expiry_date,:device_cost)
+end
+def device_params_user
+  params.require(:device).permit(:upgrade_request,:upgrade_cost)
 end
 end

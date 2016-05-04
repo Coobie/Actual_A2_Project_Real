@@ -17,10 +17,16 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-function myFunction(){
-  var sum = 0;
-  $('.price').each(function)(){
-    sum += parseFloat($(this).text());
-  });
-  alert(sum);
+$(document).ready(function(){
+     colSum();
+});
+
+function colSum() {
+    var sum=0;
+    //iterate through each input and add to sum
+    $('td').each(function() {
+            sum += parseInt($(this).text());
+    });
+    //change value of total
+    $('#mySum').html(sum);
 }
