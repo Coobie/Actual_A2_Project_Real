@@ -28,8 +28,9 @@
   	<td><%= link_to "#{n.device_type}",device_path(n) %> </td>
     <td><%= link_to "#{n.expiry_date.strftime("%d/%m/%y")}",device_path(n) %> </td>
     <td><%= link_to number_to_currency(n.upgrade_cost,:unit => "£"),device_path(n) %></td>
+    <td><%= check_box_tag :payment_received %></td>
+  
 
-   
   </tr>
   <% end %>
   <%= submit_tag "Update",  :controller => "devices", :action => "update"  %>

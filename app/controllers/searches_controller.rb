@@ -1,6 +1,7 @@
 class SearchesController < ApplicationController
 before_action :authenticate_user!
 	def new
+		authorize User
 		@search = Search.new
 		@device_type = Device.uniq.pluck(:device_type)
     @device_manufacturer = Device.uniq.pluck(:device_manufacturer)
@@ -8,11 +9,13 @@ before_action :authenticate_user!
 	end
 
 	def create
+		authorize User
 		@search = Search.create(search_params)
 		redirect_to @search
 	end
 
 	def show
+		authorize User
 		@search = Search.find(params[:id])
 	end
 

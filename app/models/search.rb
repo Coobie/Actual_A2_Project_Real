@@ -1,4 +1,5 @@
 class Search < ActiveRecord::Base
+	enum role: [:user, :admin]
 	def search_devices
 		devices = Device.all
 

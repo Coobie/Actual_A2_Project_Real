@@ -29,9 +29,13 @@ class UsersController < ApplicationController
      @user = User.find(params[:id])
      @user.destroy
      if @user.destroy
-         redirect_to :action => 'index', notice: "User deleted."
+         redirect_to :action => 'index'
+         flash[:notice]="User deleted."
      end
    end
+   def new
+     authorize User
+  end
     def create
       authorize User
     @users = User.new(sign_up_params)
