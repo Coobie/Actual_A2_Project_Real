@@ -26,11 +26,13 @@ before_action :authenticate_user!
   def update
   	@devices = Device.find(params[:id])
     if current_user.admin?
+      if @devices.update(device_params)
+      end
       if @devices.save
          flash[:notice]="Successfully Edited Device"
      else
          flash[:title]=@devices.errors.full_messages.to_sentence
-    end
+       end
     elsif current_user.user?
       if @devices.update(device_params_user)
       end
@@ -65,7 +67,7 @@ end
 
 private
 def device_params
-  params.require(:device).permit(:device_name,:upgrade_cost,:device_manufacturer,:payment_received,:device_type,:device_model,:user_id,:start_date,:expiry_date,:device_cost)
+  params.require(:device).permit(:device_name,:upgrade_cost,:device_manufacturer,:payment_received,:device_type,:warranty_length,:device_model,:user_id,:start_date,:expiry_date,:device_cost)
 end
 def device_params_user
   params.require(:device).permit(:upgrade_request,:upgrade_cost)

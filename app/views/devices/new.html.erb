@@ -25,6 +25,10 @@
     <td><b>Registered user:</b></td>
           <td><%= f.collection_select :user_id, User.all, :id, :user_id_name, :include_blank => "--Please Select Option--"  %></td>
     <tr>
+      <td><b>Length of Warranty:</b></td>
+      <td><%=f.select(:warranty_length,[["No Warranty",0],["1 Month",1],["2 Months",2],["3 Months",3],["4 Months",4],["6 Months",6],["8 Months",8],["10 Months",10],["12 Months (1 Year)",12],["18 Months (1.5 Years)",18]
+      ,["24 Months (2 Years)",24],["36 Months (3 Years)",36],["48 Months (4 Years)",48],["60 Months (5 Years)",60],["Lifetime Warranty",1000]] , :include_blank => "--Please Select Option--" )%></td>
+    <tr>
       <td><b>Start date of Device:</b></td>
       <td><%=f.text_field :start_date,"data-provide"=>'datepicker', :autocomplete => 'off'%></td>
     </tr>

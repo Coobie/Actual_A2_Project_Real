@@ -45,6 +45,19 @@
              <td><b>Original price of Device:</b></td>
              <td><%=number_to_currency(@devices.device_cost,:unit => "£")%></td>
            </tr>
+           <tr>
+             <td><b>Length of warranty:</b></td>
+             <% if @devices.warranty_length == 1000 %>
+              <td>Lifetime</td>
+             <% else %>
+             <td> <%= @devices.warranty_length %> </td>
+             <% end %>
+           </tr>
+           <% if @devices.start_date + @devices.warranty_length*30 > time %>
+            <td><b>This device is still in Warranty</b></td>
+           <% else %>
+            <td><b>This device is not in Warranty</b></td>
+           <% end %>
              <tr>
                <td><b>Start Date of Device:</b> </td>
                <td><%=@devices.start_date.strftime("%d/%m/%y") %></td>

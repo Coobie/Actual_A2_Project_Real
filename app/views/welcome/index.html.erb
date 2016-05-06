@@ -19,7 +19,7 @@
   		<th>Device Type  </th>
       <th>Original Expiry Date </th>
       <th>Cost to Owner</th>
-      <th>option</th>
+      <th colspan="2">Has User Paid for Device?</th>
 
   	</tr>
   <% user_requests.each do |n| %>
@@ -28,14 +28,19 @@
   	<td><%= link_to "#{n.device_type}",device_path(n) %> </td>
     <td><%= link_to "#{n.expiry_date.strftime("%d/%m/%y")}",device_path(n) %> </td>
     <td><%= link_to number_to_currency(n.upgrade_cost,:unit => "£"),device_path(n) %></td>
-    <td><%= check_box_tag :payment_received %></td>
-  
+    <td><%= form_for n do |j| %>
+      <%= j.check_box :payment_received %></td>
+      <td><%= j.submit "Paid For", :controller => "welcome", :action => "update"  %></td>
+      <% end %>
 
   </tr>
   <% end %>
-  <%= submit_tag "Update",  :controller => "devices", :action => "update"  %>
   </table>
   <% end %>
+  <h4>Total Expected Funds</h4>
+  <%= number_to_currency(a = Device.unpaid.wanted.sum(:upgrade_cost),:unit=> "£") %>
+  <h4>Total Recieved from Upgrades</h4>
+  <%= number_to_currency(b = Device.paid.wanted.sum(:upgrade_cost),:unit=> "£") %>
 <h3>The following devices expire within two months:</h3>
 
 <% expire_soon = @devices_all.where(["expiry_date <= ?",date_two_months]).where(["expiry_date >= ?",time]) %>

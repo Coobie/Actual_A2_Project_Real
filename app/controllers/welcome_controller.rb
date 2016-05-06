@@ -9,4 +9,13 @@ class WelcomeController < ApplicationController
 
     end
   end
+  def update
+   @devices = Device.find(params[:id])
+   if @devices.update(accounts_params)
+     redirect_to :action=> 'index'
+   end
+ end
+  def accounts_params
+    params.require(:device).permit(:payment_received)
+  end
 end
