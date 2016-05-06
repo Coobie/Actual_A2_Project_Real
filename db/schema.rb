@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506164543) do
+ActiveRecord::Schema.define(version: 20160506184713) do
 
   create_table "devices", force: :cascade do |t|
     t.string   "device_name"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20160506164543) do
     t.boolean  "payment_received",                             default: false
     t.decimal  "upgrade_cost",        precision: 10, scale: 2, default: 0.0
     t.boolean  "paid_for",                                     default: false
-    t.integer  "warranty_length"
+    t.integer  "warranty_length",                              default: 0
   end
 
   create_table "searches", force: :cascade do |t|

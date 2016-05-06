@@ -10,12 +10,17 @@ class WelcomeController < ApplicationController
     end
   end
   def update
-   @devices = Device.find(params[:id])
-   if @devices.update(accounts_params)
-     redirect_to :action=> 'index'
+  	@devices = Device.find(params[:id])
+    if current_user.admin?
+      if @devices.update(payment_params)
+      
+      end
+      if @devices.save
+         flash[:notice]="#{@devices.name} has been selected as paid"
+     end
    end
  end
-  def accounts_params
+  def payment_params
     params.require(:device).permit(:payment_received)
   end
 end

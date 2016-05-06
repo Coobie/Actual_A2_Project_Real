@@ -1,6 +1,7 @@
 class Device < ActiveRecord::Base
     	validates :device_type, presence: {message:" is missing"}
       validates :user_id, presence: {message:" is missing"}
+      validates :warranty_length, presence: {message:" is missing"}
      validates :device_name,length: { in: 2..25 }
     validates :device_manufacturer,length: { in: 1..30 }
     validates :device_model,length: { in: 1..30 }

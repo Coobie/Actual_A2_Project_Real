@@ -1,6 +1,5 @@
 
 Rails.application.routes.draw do
-  get 'accounting/index' 
 
 devise_for :users, :controllers => { registrations: 'registrations' }
   get 'welcome/index'

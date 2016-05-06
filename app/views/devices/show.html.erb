@@ -49,8 +49,10 @@
              <td><b>Length of warranty:</b></td>
              <% if @devices.warranty_length == 1000 %>
               <td>Lifetime</td>
+              <% elsif @devices.warranty_length == 0 %>
+              <td>This device has no Warranty</td>                
              <% else %>
-             <td> <%= @devices.warranty_length %> </td>
+             <td> <%= @devices.warranty_length %> months </td>
              <% end %>
            </tr>
            <% if @devices.start_date + @devices.warranty_length*30 > time %>
