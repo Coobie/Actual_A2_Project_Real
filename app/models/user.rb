@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   validates :office_location, presence: {message:" is missing"}
   validates :role, presence: {message:" is missing"}
-  validates :first_name,length: { in: 1..25 }
-  validates :last_name,length: { in: 1..25}
+  validates :first_name,length: { in: 1..25 }, format: {  with: /\A^[-a-z]+\z/i, message: "must only contain letters" }
+  validates :last_name,length: { in: 1..25}, format: {  with: /\A^[-a-z]+\z/i, message: "must only contain letters" }
   validates :email,length: { in: 1..35 }, uniqueness: true
 
   enum role: [:user, :admin]
