@@ -15,6 +15,7 @@ devise_for :users, :controllers => { registrations: 'registrations' }
   get 'devices/:id/edit', to: 'devices#edit', as: :editing_device
   get 'devices/show/:id', to: 'devices#show'
   get'devices/edit/:id' => 'products#destroy', :via => :delete
+  get'search/new_user' =>'searches#new_user'
   resources :searches
   resources :devices
   resources :users, except: :create

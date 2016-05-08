@@ -8,6 +8,10 @@ before_action :authenticate_user!
 		@user_id = User.uniq.pluck(:id)
 	end
 
+	def new_user
+		@search = Search.new
+	end
+
 	def create
 		authorize User
 		@search = Search.create(search_params)
@@ -15,6 +19,11 @@ before_action :authenticate_user!
 	end
 
 	def show
+		authorize User
+		@search = Search.find(params[:id])
+	end
+
+	def show_users
 		authorize User
 		@search = Search.find(params[:id])
 	end

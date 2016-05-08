@@ -6,8 +6,26 @@ password:'qwertyuio',
 password_confirmation: 'qwertyuio',
 first_name: 'Bob',
 last_name: 'Smith',
-office_location: 'London',
+office_location: '',
 role: 'user' ) unless User.where(email: 'bob@mail.com').exists?
+
+User.create!(
+email:'bob@mail.com',
+password:'qwertyuio',
+password_confirmation: 'qwertyuio',
+first_name: 'Bob',
+last_name: 'Smith',
+office_location: 'Meadow Terrace',
+role: 'user' ) unless User.where(email: 'bob@mail.com').exists?
+
+User.create!(
+email:'example@user.com',
+password:'123456789',
+password_confirmation: '123456789',
+first_name: 'example',
+last_name: 'test',
+office_location: 'Hill View Crest',
+role: 'user' ) unless User.where(email: 'example@user.com').exists?
 
 User.create!(
 email:'jgc@mail.com',
@@ -15,7 +33,7 @@ password:'123456789',
 password_confirmation: '123456789',
 first_name: 'Jacob',
 last_name: 'G-C',
-office_location: 'Bristol',
+office_location: 'Bay View Park',
 role: 'admin' ) unless User.where(email: 'jgc@mail.com').exists?
 
 #Devices
